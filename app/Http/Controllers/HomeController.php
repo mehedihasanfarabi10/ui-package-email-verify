@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
+use DB;
 
 class HomeController extends Controller
 {
@@ -36,6 +38,49 @@ class HomeController extends Controller
 
         return $passwords;
     }
+     
+    public function passchange(Request $request)
+    {
+        return view('passchange');
+    }
+     
+    public function updatepass(Request $request)
+    {
+        $request->validate([
+            'current_password' => 'required',
+            'password' => 'required|string|max:400|min:6',
+            'password_confirmation' => 'required|same:password'
+        ]);
+    
+        $user = Auth::user();
+    
+        // Check if the current password is correct
+        if (Hash::check($request->current_password, $user->password)) {
+            // Update the password with the new one
+            // $user->password = Hash::make($request->password);
+            // $user->save();
+
+            //2nd way
+
+
+            $data = array(
+                'password'=> Hash::make($request->password),
+            );
+
+            DB::table('users')->where('id',$user)->update($data);
+            Auth::logout();
+            return redirect()->route('login');
+    
+            // return redirect()->back()->with('success', 'Password changed successfully');
+        } 
+        else if($request->password !==$request->password_confirmation){
+            return redirect()->back()->with('error','New password and confirm password didnt match');
+        }
+        else {
+            return redirect()->back()->with('error', 'Current password not matched.');
+        }
+    }
+    
 
     public function deposit()  {
         return view('deposit');
