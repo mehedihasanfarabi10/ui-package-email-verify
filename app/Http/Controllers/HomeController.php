@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Hash;
 
 class HomeController extends Controller
 {
@@ -27,6 +28,13 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
+    }
+     
+    public function hashing(Request $request)
+    {
+        $passwords =Hash::make( $request->password);
+
+        return $passwords;
     }
 
     public function deposit()  {
