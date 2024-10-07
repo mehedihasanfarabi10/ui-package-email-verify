@@ -63,6 +63,8 @@
 
                                     <a class="dropdown-item" href="{{ route('deposit.money') }}"
                                     ">Deposit Money </a>
+                                    <a class="dropdown-item" href="{{ route('password.change') }}"
+                                    ">Password Change </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -89,3 +91,9 @@
 </body>
 
 </html>
+<?php 
+
+?>
+@php
+
+@endphp

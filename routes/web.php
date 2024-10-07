@@ -93,4 +93,12 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::post('/hashing/store', [App\Http\Controllers\HomeController::class, 'hashing'])->name('hashing.store');
 Route::get('/details/{id}', [App\Http\Controllers\HomeController::class, 'detailss'])->name('details');
+
+
 Route::get('/deposit/money', [App\Http\Controllers\HomeController::class, 'deposit'])->name('deposit.money')->middleware('verified');
+
+// Route to display the change password form (GET)
+Route::get('/password/change', [App\Http\Controllers\HomeController::class, 'passchange'])->name('password.change')->middleware('verified');
+
+// Route to handle password change submission (POST)
+Route::post('/update/pass', [App\Http\Controllers\HomeController::class, 'updatepass'])->name('update.pass')->middleware('verified');
