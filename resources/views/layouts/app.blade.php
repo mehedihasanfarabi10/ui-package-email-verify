@@ -94,6 +94,3 @@
 <?php 
 
 ?>
-@php
-
-@endphp

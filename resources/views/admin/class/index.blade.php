@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('All Class Data') }}</div>
 
                 <div class="card-body">
-                <a href="" class="btn btn-primary btn-info" style="float: right;">Add New</a>
+                    <a href="{{route('create')}}" class="btn btn-primary btn-info" style="float: right;">Add New</a>
                     <table class="table table-responsive table-stripe">
                         <thead>
                             <tr>
@@ -19,17 +19,23 @@
                         <tbody>
                             @foreach ($classData as $key => $class)
                             <tr>
-                                <td>{{ ++$key }}</td> 
-                                <!-- Key auto barbe 1,2,3,4...... 
-                                 class_name database column name-->
+                                <td>{{ ++$key }}</td>
+                                <!-- Key auto increment: 1,2,3,4...... class_name is the database column name-->
 
-                                <td>{{$class->class_name}}</td>
+                                <td>{{ $class->class_name }}</td>
                                 <td>
-                                    <a href="" class="btn btn-primary btn-info">Edit</a>
-                                    <a href="" class="btn btn-primary btn-danger">Delete</a>
+                                    <!-- Edit Button -->
+                                    <a href="{{ route('class.edit', $class->id) }}" class="btn btn-info">Edit</a>
+
+                                    <!-- Delete Button -->
+                                    <a href="{{ route('delete', $class->id) }}" class="btn btn-danger">Delete</a>
+
+                                    <!-- Update Button -->
+                                    <a href="{{ route('class.edit', $class->id) }}" class="btn btn-primary">Update</a> <!-- Same as Edit since update will happen after editing -->
                                 </td>
                             </tr>
                             @endforeach
+
                         </tbody>
                     </table>
                 </div>
