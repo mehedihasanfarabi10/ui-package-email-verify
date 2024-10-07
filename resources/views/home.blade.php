@@ -16,10 +16,17 @@
 
                         {{ __('You are logged in! ') }} {{ Auth::user()->name }}
 
-                        <a class="btn btn-sm btn-primary " href="{{ route('details', Crypt::encryptString('3')) }}">Show
-                            Details</a>
+                        <!-- <a class="btn btn-sm btn-primary " href="{{ route('details', Crypt::encryptString('3')) }}">Show
+                            Details</a> -->
+                            <br>
+                            <br>
+                            <br>
+                        <a class="btn btn-sm btn-primary " href="{{route('class')}}">
+                            Class</a>
+                        <a class="btn btn-sm btn-primary " >
+                            Students</a>
 
-                        <form action="{{ route('hashing.store') }}" method="POST">
+                        <!-- <form action="{{ route('hashing.store') }}" method="POST">
                             @csrf
                             <div>
                                 <label>Password</label>
@@ -27,7 +34,7 @@
 
                             </div>
                             <button class="btn btn-primary" type="submit">Submit</button>
-                        </form>
+                        </form> -->
                     </div>
                 </div>
             </div>
