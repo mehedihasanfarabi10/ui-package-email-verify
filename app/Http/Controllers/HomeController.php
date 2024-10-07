@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 
 class HomeController extends Controller
 {
@@ -34,5 +35,22 @@ class HomeController extends Controller
 
     public function resend()  {
         return "Resended email";
+    }
+
+    public function detailss($id)  {
+        
+        
+        //Crypt used to encryption
+
+
+        $id = Crypt::decryptString($id);
+
+        echo "Id is => ".$id;
+
+        //DB query data
+        // $user = DB::table('users')->where('id', $id)->first();
+
+
+        
     }
 }

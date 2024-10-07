@@ -42,4 +42,5 @@ Route::get('/email/verify', function () {
 Route::post('/verification/resend',[App\Http\Controllers\HomeController::class, 'resend'])->name('verification.resend');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/details/{id}', [App\Http\Controllers\HomeController::class, 'detailss'])->name('details');
 Route::get('/deposit/money', [App\Http\Controllers\HomeController::class, 'deposit'])->name('deposit.money')->middleware('verified');
