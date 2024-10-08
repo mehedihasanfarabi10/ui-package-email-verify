@@ -18,7 +18,13 @@ class ClassController extends Controller
        function index() {
 
         // Fetch all data from 'classes' table
-            $classData = DB::table('classes')->get();
+            // $classData = DB::table('classes')->get();
+
+
+
+             //Pagination
+
+            $classData = DB::table('classes')->paginate(4);
 
             //compact diye data send kora hoy and exact same name rakhte hobe
             //array data send

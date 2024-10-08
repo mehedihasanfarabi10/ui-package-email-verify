@@ -39,6 +39,7 @@
                                         <td>{{ $student->email }}</td>
                                         <td>{{ $student->phone }}</td>
                                         <td>{{ $student->class_id }}</td>
+                                        {{-- <td>{{ $student->class_name }}</td> used when join use --}}
 
                                         <td>
 

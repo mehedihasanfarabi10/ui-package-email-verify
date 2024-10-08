@@ -37,7 +37,11 @@
                             @endforeach
 
                         </tbody>
+                       
                     </table>
+                     {{-- Pagination --}}
+                     {{ $classData->links()}}
+                     {{-- {{ $classData->links('pagination::bootstrap-4')}} --}}
                 </div>
             </div>
         </div>

@@ -14,8 +14,16 @@ class StudentController extends Controller
     {
         //
         //Data Fetch
+       
         $studenty = DB::table('students')->orderBy('roll','ASC')->get();
+       
 
+
+        //Join
+        //Left join=> left table (students)
+        //Right join=> right table(classes)
+
+        // $studenty = DB::table('students')->join('classes','students.class_id','classes.id')->get();
 
         //Data Send
         return view('admin.student.index',compact('studenty'));
