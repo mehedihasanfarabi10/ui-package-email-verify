@@ -23,7 +23,7 @@
                             <br>
                         <a class="btn btn-sm btn-primary " href="{{route('class')}}">
                             Class</a>
-                        <a class="btn btn-sm btn-primary " >
+                        <a class="btn btn-sm btn-primary " href=" {{route('students.index')}} " >
                             Students</a>
 
                         <!-- <form action="{{ route('hashing.store') }}" method="POST">

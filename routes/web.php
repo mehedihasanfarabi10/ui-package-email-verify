@@ -1,6 +1,6 @@
 <?php
 
-
+use App\Http\Controllers\Admin\StudentController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -19,6 +19,26 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+
+//Student CRUD Operations
+
+Route::resource('students',StudentController::class);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //Class CRUD routes
