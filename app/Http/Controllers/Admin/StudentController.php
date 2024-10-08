@@ -75,10 +75,14 @@ class StudentController extends Controller
      */
     public function show(string $id)
     {
-        
-
-        $student = DB::table('students')->where('id',$id)->first();
-        return response()->json($student);
+         
+        //Find
+        // $student = DB::table('students')->find($id);
+        //First()
+        $student = DB::table('students')->where('id',$id)->select('name','email')->first();
+        // $student = DB::table('students')->where('id',$id)->first();
+        // $student = DB::table('students')->where('id',$id)->value('email');
+        return view('admin.student.view',compact('student'));
     }
 
     /**

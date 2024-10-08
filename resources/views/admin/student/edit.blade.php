@@ -97,10 +97,10 @@
                                 <div class="form-group">
                                     <label for="class">Class Name</label>
                                     <select class="form-control" name="class_id">
-                                        @foreach ($classess as $row)
-                                            <option value="{{ $row->id }}" 
-                                                @if ($row->id == $student->class_id) selected @endif>
-                                                {{ $row->class_name }}
+                                        @foreach ($classess as $class)
+                                            <option value="{{ $class->id }}" 
+                                                @if ($class->id == $student->class_id) selected @endif>
+                                                {{ $class->class_name }}
                                             </option>
                                         @endforeach
                                     </select>
