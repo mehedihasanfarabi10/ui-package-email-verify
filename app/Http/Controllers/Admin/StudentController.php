@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Student;
 use Illuminate\Http\Request;
 use DB;
 class StudentController extends Controller
@@ -15,7 +16,11 @@ class StudentController extends Controller
         //
         //Data Fetch
        
-        $studenty = DB::table('students')->orderBy('roll','ASC')->get();
+        // $studenty = DB::table('students')->orderBy('roll','ASC')->get();
+
+        //Data get by model
+
+        $studenty = Student::all();
        
 
 

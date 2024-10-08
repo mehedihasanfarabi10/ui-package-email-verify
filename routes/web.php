@@ -22,6 +22,30 @@ Route::get('/', function () {
 
 
 
+
+// Category routes
+Route::get('/category', [App\Http\Controllers\Admin\CategoryController::class, 'index'])->name('category.index');
+
+Route::get('/category/create', [App\Http\Controllers\Admin\CategoryController::class, 'create'])->name('category.create');
+
+Route::post('/category/store', [App\Http\Controllers\Admin\CategoryController::class, 'store'])->name('category.store');
+
+
+Route::get('/category/edit/{id}', [App\Http\Controllers\Admin\CategoryController::class, 'edit'])->name('category.edit');
+
+Route::post('/category/update/{id}', [App\Http\Controllers\Admin\CategoryController::class, 'update'])->name('category.update');
+
+
+
+
+
+
+
+
+
+
+
+
 //Student CRUD Operations
 
 Route::resource('students',StudentController::class);
@@ -103,15 +127,15 @@ Route::get('/delete/{id}', [App\Http\Controllers\Admin\ClassController::class, '
 
 
 
-//Auth routes er majhe sob thakbe login register 
+//Auth routes er majhe sob thakbe login register
 Auth::routes();
 
 //Email verification request route
 
- 
+
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
     $request->fulfill();
- 
+
     return redirect('/home');
 })->middleware(['auth', 'signed'])->name('verification.verify');
 
