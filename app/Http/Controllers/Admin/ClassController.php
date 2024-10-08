@@ -59,11 +59,12 @@ class ClassController extends Controller
 
        public function edit($id) {
         // Fetch the class by ID
-        $class = DB::table('classes')->where('id', $id)->first();
+        $classData = DB::table('classes')->where('id', $id)->first();
         
-        // Return the edit view with the class data
-        return view('admin.class.edit', compact('class'));
+       // Return the edit view with the class data
+       return view('admin.class.edit', compact('classData'));
     }
+    
     
        public function update(Request $request,$id) {
 

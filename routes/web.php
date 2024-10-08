@@ -44,20 +44,22 @@ Route::resource('students',StudentController::class);
 //Class CRUD routes
 
 
+// Show all classes
 Route::get('/class', [App\Http\Controllers\Admin\ClassController::class, 'index'])->name('class');
 
+// Show create form
 Route::get('/create', [App\Http\Controllers\Admin\ClassController::class, 'create'])->name('create');
 
+// Store a new class
 Route::post('/store', [App\Http\Controllers\Admin\ClassController::class, 'store'])->name('store');
 
-//Get diye delete by passing id in url
-// Route for editing (showing the form)
+// Show the edit form for a specific class
 Route::get('/edit/{id}', [App\Http\Controllers\Admin\ClassController::class, 'edit'])->name('class.edit');
 
-// Route for updating (processing the form)
-Route::put('/update/{id}', [App\Http\Controllers\Admin\ClassController::class, 'update'])->name('class.update');
+// Update a specific class (PUT method)
+Route::put('/class/update/{id}', [App\Http\Controllers\Admin\ClassController::class, 'update'])->name('class.update');
 
-// Route for deleting
+// Delete a specific class
 Route::get('/delete/{id}', [App\Http\Controllers\Admin\ClassController::class, 'delete'])->name('delete');
 
 // Route::delete('/delete', [App\Http\Controllers\Admin\ClassController::class, 'delete'])->name('delete');

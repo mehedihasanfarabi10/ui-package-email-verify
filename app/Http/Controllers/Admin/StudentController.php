@@ -75,15 +75,28 @@ class StudentController extends Controller
      */
     public function show(string $id)
     {
-        //
+        
+
+        $student = DB::table('students')->where('id',$id)->first();
+        return response()->json($student);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit( $id)
     {
-        //
+        $classess = DB::table('classes')->get();
+        $student = DB::table('students')->where('id',$id)->first();
+
+        return view('admin.student.edit',compact('classess','student'));
+       
+
+        
+
+
+
+
     }
 
     /**
@@ -91,7 +104,47 @@ class StudentController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        
+        
+        $request->validate([
+            'class_id' => 'required',
+            'name' => 'required',
+            'roll' => 'required',
+            'email' => 'required',
+            'phone' => 'required|max:50',
+            
+        ]);
+
+        // Create the data array without the extra array wrapping
+        $data = [
+        'class_id' => $request->class_id,
+        'name' => $request->name,
+        'roll' => $request->roll,
+        'email' => $request->email,
+        'phone' => $request->phone,
+                ];
+
+                //akhane extra array() wrapping jekarone error ase
+
+
+                // $data = array(
+                //     [
+                //         'class_id' => $request->class_id,	
+                //         'name' => $request->name,	
+                //         'roll' => $request->roll,	
+                //         'email' => $request->email,	
+                //         'phone' => $request->phone,	
+                //     ]
+                //     );
+        
+
+            DB::table('students')->where('id',$id)->update($data);
+        
+            return redirect()->route('students.index')->with('success','Student updated successfully');
+
+        // dd($request->all());
+
+
     }
 
     /**
@@ -100,5 +153,8 @@ class StudentController extends Controller
     public function destroy(string $id)
     {
         //
+
+        DB::table('students')->where('id',$id)->delete();
+        return redirect()->back()->with('success','Deleted successful');
     }
 }

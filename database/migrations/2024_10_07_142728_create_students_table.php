@@ -14,7 +14,7 @@ return new class extends Migration
             $table->string('name', 35)->nullable();
             $table->string('roll')->nullable();
             $table->string('email')->nullable();
-            $table->integer('phone')->nullable();
+            $table->string('phone',100)->nullable();
             $table->text('address')->nullable();
             $table->string('image')->nullable();
             $table->foreign('class_id')->references('id')->on('classes')->onDelete('cascade'); // Corrected onDelete to 'cascade'

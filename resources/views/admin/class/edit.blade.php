@@ -31,13 +31,13 @@
                     <!-- Edit Form -->
                     <div class="form-container">
                         <h2>Edit Class</h2>
-                        <form action="{{ route('class.update', $class->id) }}" method="POST">
+                        <form action="{{ route('class.update', $classData->id) }}" method="POST">
                             @csrf
                             @method('PUT') <!-- This will tell Laravel to treat the request as PUT -->
 
                             <div class="form-group">
                                 <label for="class_name">Class Name</label>
-                                <input type="text" name="class_name" class="form-control" value="{{ $class->class_name }}" required>
+                                <input type="text" name="class_name" class="form-control" value="{{ $classData->class_name }}" required>
                             </div>
 
                             <button type="submit" class="btn btn-primary">Update</button>

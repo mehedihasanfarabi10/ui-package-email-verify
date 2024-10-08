@@ -12,6 +12,11 @@
                             New Student
                         </a>
                         <table class="table table-responsive table-stripe">
+                            @if (session('success'))
+                                <div class="alert alert-success">
+                                    {{ session('success') }}
+                                </div>
+                            @endif
                             <thead>
                                 <tr>
                                     <td>SL</td>
@@ -20,7 +25,7 @@
                                     <td>Email</td>
                                     <td>Phone</td>
                                     <td>Class Name</td>
-                                    
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -34,25 +39,33 @@
                                         <td>{{ $student->email }}</td>
                                         <td>{{ $student->phone }}</td>
                                         <td>{{ $student->class_id }}</td>
-                                        
+
                                         <td>
 
-                                            {{-- 
-
-                                            {{ route('class.edit', $class->id) }}
-                                             {{ route('delete', $class->id) }}
-                                              {{ route('class.edit', $class->id) }}
-                                            
-                                            --}}
+                                           
                                             <!-- Edit Button -->
-                                            <a href="" class="btn btn-info">Edit</a>
+                                            <a href="{{route('students.edit', $student->id)}}" class="btn btn-primary">Edit</a>
+                                            <a href="{{route('students.show', $student->id)}}" class="btn btn-primary">Show</a>
 
                                             <!-- Delete Button -->
-                                            <a href="" class="btn btn-danger">Delete</a>
+                                            <form action="{{ route('students.destroy', $student->id) }}" method="POST">
+                                                <!-- For success message -->
+
+
+                                                @csrf
+                                                {{--  hidden input er maddhome delete method pass  --}}
+                                                <input type="hidden" name="_method" value="DELETE" />
+
+
+                                                <button href="{{ route('students.destroy', $student->id) }}"
+                                                    class="btn btn-danger">
+                                                    Delete
+                                                </button>
+                                            </form>
+                                            {{--  <a href="{{ route('students.destroy', $student->id) }}" class="btn btn-danger">Delete</a>  --}}
 
                                             <!-- Update Button -->
-                                            <a href=""
-                                                class="btn btn-primary">Update</a>
+                                            <a href="" class="btn btn-primary">Update</a>
                                             <!-- Same as Edit since update will happen after editing -->
                                         </td>
                                     </tr>
