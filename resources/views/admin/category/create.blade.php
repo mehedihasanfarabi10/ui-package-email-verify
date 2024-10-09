@@ -1,6 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
+    <!-- Add Toastr CSS in the header -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
+    <!-- Add Toastr JS just before the closing </body> tag -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -13,23 +19,34 @@
                         <a class="btn btn-primary" href=" {{ route('category.index') }} ">All category</a>
                         <br>
 
+                        <script>
+                            @if (Session::has('success'))
+                                toastr.success("{{ Session::get('success') }}");
+                            @endif
 
-                            <h2>Category Form</h2>
-                            <form action="{{ route('category.store') }}" method="POST">
-                                @csrf
-                                <div>
-                                    <label for="category-name">Category Name</label><br>
-                                    <input type="text" name="category_name" value="{{ old('category_name') }}"
-                                        class="form -control @error('category_name') is-invalid @enderror"
-                                        id="category-name" placeholder="Enter category name" >
-                                    @error('category_name')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                            @if (Session::has('error'))
+                                toastr.error("{{ Session::get('error') }}");
+                            @endif
+                        </script>
 
-                                </div>
-                                {{-- <div>
+
+
+                        <h2>Category Form</h2>
+                        <form action="{{ route('category.store') }}" method="POST">
+                            @csrf
+                            <div>
+                                <label for="category-name">Category Name</label><br>
+                                <input type="text" name="category_name" value="{{ old('category_name') }}"
+                                    class="form -control @error('category_name') is-invalid @enderror" id="category-name"
+                                    placeholder="Enter category name">
+                                @error('category_name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+
+                            </div>
+                            {{-- <div>
                                     <label for="category-slug">Category Slug</label><br>
                                     <input type="text" id="category-slug" name="category_slug"
                                         value="{{ old('category_name') }}"
@@ -42,17 +59,17 @@
                                     @enderror
 
                                 </div> --}}
-                                <div>
+                            <div>
 
-                                    <br>
-                                    <input class="btn btn-primary" type="submit" value="Submit">
+                                <br>
+                                <input class="btn btn-primary" type="submit" value="Submit">
 
-                            </form>
-                        </div>
-
+                        </form>
                     </div>
+
                 </div>
             </div>
         </div>
+    </div>
     </div>
 @endsection

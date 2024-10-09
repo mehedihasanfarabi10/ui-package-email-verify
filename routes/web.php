@@ -17,7 +17,7 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 */
 
 Route::get('/', function () {
-    return view('layouts.app');
+    return view('welcome');
 });
 
 
@@ -129,7 +129,8 @@ Route::get('/delete/{id}', [App\Http\Controllers\Admin\ClassController::class, '
 
 
 //Auth routes er majhe sob thakbe login register
-Auth::routes();
+Auth::routes(['register'=>false]);
+// Auth::routes();
 
 //Email verification request route
 

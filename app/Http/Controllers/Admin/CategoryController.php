@@ -51,7 +51,13 @@ class CategoryController extends Controller
         //     'category_slug' => Str::of($request->category_name)->slug('-')
         // ]);
 
-        return redirect()->back();
+        // return redirect()->route('category.index')->with('success', 'Category created successfully');
+        // return response('Category created successfully', 200);
+
+
+        $notification = array('message'=>'Category Inserted','alert-type'=>'success');
+        return redirect()->back()->with($notification);
+
         // return view('admin.category.create');
     }
 
