@@ -30,7 +30,7 @@
                                         <td>{{ $categories->category_slug }}</td>
                                         <td>
                                             <a href="{{ route('category.edit',$categories->id) }}" class="btn btn-primary">Edit</a>
-                                            <a href="" class="btn btn-danger">Delete</a>
+                                            <a href="{{ route('category.delete',$categories->id) }}" class="btn btn-danger">Delete</a>
                                             {{-- <a href="{{ route('category.edit', $categories->id)  }}" class="btn btn-primary">Edit</a>
                                             <a href="{{ route('category.delete', $categories->id) }}" class="btn btn-danger">Delete</a>  --}}
 

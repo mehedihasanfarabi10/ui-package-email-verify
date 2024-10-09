@@ -88,6 +88,27 @@ class CategoryController extends Controller
 
     }
 
+    public function destroy($id){
+
+        //  $category = Category::find($id);
+
+        //  $category->delete();
+
+         //destroy
+
+         Category::destroy($id);
+        //  Category::destroy(3,4,5);
+        //Only delete 3,4   and 5 categories
+
+        //Delete by query builder
+
+        //DB::table("categories")->where('id',$id)->delete();
+
+        return redirect()->route('category.index');
+
+
+    }
+
 
 
 }
