@@ -59,6 +59,9 @@ Route::post('/subcategory/update/{id}', [App\Http\Controllers\Admin\SubcategoryC
 
 
 
+//Post routes
+
+Route::get('/post/create', [App\Http\Controllers\Admin\PostController::class, 'create'])->name('post.create');
 
 
 
