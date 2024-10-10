@@ -25,7 +25,7 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                 data-accordion="false">
-                
+
                 <li class="nav-item">
                     <a href="{{ route('home') }}" class="nav-link active">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -33,6 +33,8 @@
                     </a>
                 </li>
 
+
+                {{--  Category   --}}
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-copy"></i>
@@ -42,24 +44,45 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
+
                         <li class="nav-item">
-                            <a href="pages/layout/top-nav.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Categories</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{route('category.create')}}" class="nav-link">
+                            <a href="{{ route('category.create') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Add Category</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('category.index')}}" class="nav-link">
+                            <a href="{{ route('category.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>All Category</p>
                             </a>
                         </li>
+                    </ul>
+                </li>
+
+                {{--  SubCategory   --}}
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-copy"></i>
+                        <p>
+                            Subcategory
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('subcategory.create') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Add Subcategory</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('subcategory.index') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>All Subcategory</p>
+                            </a>
+                        </li>
+                       
                     </ul>
                 </li>
 

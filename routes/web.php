@@ -40,6 +40,26 @@ Route::post('/category/update/{id}', [App\Http\Controllers\Admin\CategoryControl
 
 
 
+// SUBCategory routes
+Route::get('/subcategory/index', [App\Http\Controllers\Admin\SubcategoryController::class, 'index'])->name('subcategory.index');
+
+// Route::get('/subcategory/create', [App\Http\Controllers\Admin\SubcategoryController::class, 'create'])->name('subcategory.create');
+
+Route::get('/subcategory/create', [App\Http\Controllers\Admin\SubcategoryController::class, 'create'])->name('subcategory.create');
+
+
+Route::post('/subcategory/store', [App\Http\Controllers\Admin\SubcategoryController::class, 'store'])->name('subcategory.store');
+
+
+Route::get('/subcategory/edit/{id}', [App\Http\Controllers\Admin\SubcategoryController::class, 'edit'])->name('subcategory.edit');
+Route::get('/subcategory/delete/{id}', [App\Http\Controllers\Admin\SubcategoryController::class, 'destroy'])->name('subcategory.delete');
+
+Route::post('/subcategory/update/{id}', [App\Http\Controllers\Admin\SubcategoryController::class, 'update'])->name('subcategory.update');
+
+
+
+
+
 
 
 

@@ -89,7 +89,8 @@ class CategoryController extends Controller
             'category_slug' => Str::of($request->category_name)->slug('-')
         ]);
 
-        return redirect()->route('category.index');
+        $notification = array('message'=>'Category Updated','alert-type'=>'success');
+        return redirect()->back()->with($notification);
 
 
     }
@@ -110,7 +111,8 @@ class CategoryController extends Controller
 
         //DB::table("categories")->where('id',$id)->delete();
 
-        return redirect()->route('category.index');
+        $notification = array('message'=>'Category deleted successful','alert-type'=>'success');
+        return redirect()->back()->with($notification);
 
 
     }

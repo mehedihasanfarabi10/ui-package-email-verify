@@ -130,7 +130,14 @@
     <script type="text/javascript" src="{{ asset('backend/plugins/toastr/toastr.min.js') }}"></script>
 
     <script src="{{ asset('backend/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
-
+    <!-- jQuery -->
+    <script src="{{ asset('path-to-jquery/jquery.min.js') }}"></script>
+    
+    <!-- Your custom script -->
+    @stack('script')
+    <!-- SweetAlert JS -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        
     <script>
         $(function() {
             $("#example1").DataTable({
@@ -150,30 +157,41 @@
             });
         });
     </script>
-
+    @stack('script')
     <script>
-        $(document).on("click", "#delete", function(e) {
+        $(document).on("click", ".delete", function(e) {
             e.preventDefault();
+        
+            var link = $(this).data('url'); // Get the URL from the button's data-url attribute
+        
+            if (!link) {
+                console.error('Delete URL not found');
+                return;
+            }
+        
             swal({
-
-                    title: 'Are you want to delete?',
-                    text: "You won't be able to return this!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    dangerMode: true,
-                    confirmButtonText: 'Yes, delete it!'
-
-                })
-                .then((willDelete) => {
-                    if (willDelete) {
-                        window.location.href = link;
-                    } else {
-                        swal("Safe Data");
+                title: 'Are you sure you want to delete?',
+                text: "You won't be able to recover this!",
+                icon: 'warning',
+                buttons: {
+                    cancel: "Cancel",
+                    confirm: {
+                        text: "Yes, delete it!",
+                        value: true,
+                        visible: true,
+                        className: "btn-danger"
                     }
-                });
+                },
+                dangerMode: true,
+            }).then((willDelete) => {
+                if (willDelete) {
+                    window.location.href = link; // Redirect to the delete URL
+                } else {
+                    swal("Your data is safe!");
+                }
+            });
         });
+        
     </script>
 
     <script>
