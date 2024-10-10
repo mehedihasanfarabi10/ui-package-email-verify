@@ -47,4 +47,10 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    // Accessor use
+
+    public function getNameEmailAttribute(){
+        return $this->name."-".$this->email;
+    }
 }

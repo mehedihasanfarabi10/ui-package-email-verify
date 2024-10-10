@@ -14,6 +14,12 @@ class Category extends Model
         'category_slug'
     ];
 
+    //Mutators use when push a info into database then rule can set uppercase lowercase
+
+    public function setCategoryNameAttribute($value){
+        $this->attributes['category_name'] = ucfirst($value);
+    }
+
 
 
 }
