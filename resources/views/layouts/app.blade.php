@@ -10,7 +10,7 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="{{ asset('public/backend') }}/plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="{{ asset('/backend') }}/plugins/fontawesome-free/css/all.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Tempusdominus Bootstrap 4 -->
@@ -80,7 +80,15 @@
     <!-- ./wrapper -->
 
     <!-- jQuery -->
-    <script src="{{ asset('backend') }}/plugins/jquery/jquery.min.js"></script>
+    <script src="{{ asset('/backend') }}/plugins/jquery/jquery.min.js"></script>
+
+    {{--  SweetAlert  --}}
+
+    <img src="{{ asset('backend/dist/img/user5-128x128.jpg') }}" alt="User Image">
+    <img src="{{ asset('backend/dist/img/user3-128x128.jpg') }}" alt="User Image">
+    <script src="{{ asset('backend/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
+
+
     <!-- jQuery UI 1.11.4 -->
     <script src="{{ asset('backend') }}/plugins/jquery-ui/jquery-ui.min.js"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -131,13 +139,15 @@
 
     <script src="{{ asset('backend/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
     <!-- jQuery -->
-    <script src="{{ asset('path-to-jquery/jquery.min.js') }}"></script>
-    
+    <script src="{{ asset('backend/plugins/jquery/jquery.min.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
     <!-- Your custom script -->
     @stack('script')
     <!-- SweetAlert JS -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-        
+
     <script>
         $(function() {
             $("#example1").DataTable({
@@ -161,14 +171,14 @@
     <script>
         $(document).on("click", ".delete", function(e) {
             e.preventDefault();
-        
+
             var link = $(this).data('url'); // Get the URL from the button's data-url attribute
-        
+
             if (!link) {
                 console.error('Delete URL not found');
                 return;
             }
-        
+
             swal({
                 title: 'Are you sure you want to delete?',
                 text: "You won't be able to recover this!",
@@ -191,7 +201,6 @@
                 }
             });
         });
-        
     </script>
 
     <script>
@@ -215,6 +224,22 @@
         @endif
     </script>
 
+    <!-- Page specific script -->
+    <script>
+        $(function() {
+            // Summernote
+            $('#summernote').summernote()
+
+            // CodeMirror
+            {{--  CodeMirror.fromTextArea(document.getElementById("codeMirrorDemo"), {
+                mode: "htmlmixed",
+                theme: "monokai"
+            });  --}}
+        })
+    </script>
+
+
+    
 
 </body>
 

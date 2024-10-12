@@ -61,8 +61,12 @@ Route::post('/subcategory/update/{id}', [App\Http\Controllers\Admin\SubcategoryC
 
 //Post routes
 
+Route::get('/post/index', [App\Http\Controllers\Admin\PostController::class, 'index'])->name('post.index');
 Route::get('/post/create', [App\Http\Controllers\Admin\PostController::class, 'create'])->name('post.create');
+Route::delete('/post/{id}', [App\Http\Controllers\Admin\PostController::class, 'delete'])->name('post.delete');
+// Route::get('/post/delete/{id}', [App\Http\Controllers\Admin\PostController::class, 'delete'])->name('post.delete');
 
+Route::post('/post/store', [App\Http\Controllers\Admin\PostController::class, 'store'])->name('post.store');
 
 
 
