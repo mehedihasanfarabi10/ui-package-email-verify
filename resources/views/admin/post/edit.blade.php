@@ -6,20 +6,22 @@
             <div class="col-md-10">
                 <div class="card card-primary">
                     <div class="  card-header">
-                        <h3 class="card-title">Post Form</h3>
+                        <h3 class="card-title">Post Edit</h3>
 
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form action="{{ route('post.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('post.update', $post->id) }}" method="POST" enctype="multipart/form-data">
+
                         @csrf
+                        {{--  <input type="hidden" name="id" value="{{$post->id}}">  --}}
                         <a class="btn btn-primary" href="{{ route('post.index') }}">All Posts</a>
 
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="title">Post Title</label>
-                                <input type="text" name="title"  value="{{old('title')}}" class="form-control" id="title"
-                                    placeholder="Enter post title" required>
+                                <input type="text" name="title" value="{{ $post->title }}" class="form-control"
+                                    id="title" placeholder="Enter post title" required>
                             </div>
 
                             {{--  Category  --}}
@@ -60,14 +62,15 @@
                             <div class="form-group">
                                 <label for="category">Subcategory</label>
                                 <select class="form-control" name="subcategory_id">
+                                    @php
+                                        $subcategory = DB::table('subcategories')
+                                            ->where('category_id', $cat->id)
+                                            ->get();
+                                    @endphp
                                     @foreach ($subcategory as $sub)
-                                        @php
-                                            $subcategory = DB::table('subcategories')
-                                                ->where('category_id', $cat->id)
-                                                ->get();
-                                        @endphp
-                                        <option style="color: #10e625" value="{{ $sub->id }}">
-                                            ---{{ $sub->subcategory_name }}
+                                        <option style="color: #10e625" value="{{ $sub->id }}"
+                                            @if ($sub->id == $post->subcategory_id) selected @endif>
+                                            {{ $sub->subcategory_name }}
                                         </option>
                                     @endforeach
                                 </select>
@@ -76,16 +79,17 @@
                             {{--  Date time  --}}
                             <div class="form-group">
                                 <label for="category">Post Date</label>
-                                <input type="date" name="post_date" value="{{old('post_date')}}" placeholder="Enter your post date"
-                                    class="form-control" required />
+                                <input type="date" name="post_date" value="{{ $post->post_date }}"
+                                    placeholder="Enter your post date" class="form-control" required />
                             </div>
 
 
                             {{--  Description  --}}
                             <div class="form-group">
                                 <label for="category">Description</label>
-                                <textarea type="text" id="summernote" name="description" rows="15"  value="{{old('description')}}"  placeholder="Enter your post description"
-                                    class="form-control" required>
+                                <textarea type="text" id="summernote" name="description" rows="15" value="{{ $post->description }}"
+                                    placeholder="Enter your post description" class="form-control" required>
+
 
                                     </textarea>
                             </div>
@@ -93,8 +97,8 @@
                             {{--  Tags  --}}
                             <div class="form-group">
                                 <label for="category">Tags</label>
-                                <input type="text" name="tags"  value="{{old('tags')}}"  placeholder="Enter your post tags" class="form-control"
-                                    required />
+                                <input type="text" name="tags" value="{{ $post->tags }}"
+                                    placeholder="Enter your post tags" class="form-control" required />
                             </div>
 
                             {{--  File input  --}}
@@ -102,17 +106,21 @@
                                 <label for="Chooseimage">File input</label>
                                 <div class="input-group">
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" name="image"  value="{{old('image')}}" >
+                                        <input type="file" class="custom-file-input" name="image"
+                                            value="{{ old('image') }}">
                                         <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                                     </div>
+                                    {{--  Old image  --}}
+                                    <input type="hidden" name="old_image" value="{{ $post->image }}">
                                     <div class="input-group-append">
                                         <span class="input-group-text">Upload</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-check">
-                                <input type="checkbox" class="form-check-input" name="status" value="1">
-                                <label class="form-check-label" for="status">Publish now</label>
+                                <input type="checkbox" class="form-check-input" name="status"
+                                    @if ($post->status == 1) checked @endif value="1">
+                                <label class="form-check-label" for="status">Published</label>
                             </div>
                         </div>
                         <!-- /.card-body -->
@@ -129,7 +137,7 @@
 
 
                         <div class="card-footer">
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary">Update</button>
 
                         </div>
                     </form>
@@ -137,13 +145,6 @@
             </div>
         </div>
     </div>
-
-    {{--  <!-- Add Toastr CSS in the header -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-
-    <!-- Add Toastr JS just before the closing </body> tag -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>  --}}
-    {{--  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>  --}}
 
 
     </div>

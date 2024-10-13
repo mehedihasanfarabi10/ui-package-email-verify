@@ -43,10 +43,12 @@
 
                                         <td>
 
-                                           
+
                                             <!-- Edit Button -->
-                                            <a href="{{route('students.edit', $student->id)}}" class="btn btn-primary">Edit</a>
-                                            <a href="{{route('students.show', $student->id)}}" class="btn btn-primary">Show</a>
+                                            <a href="{{ route('students.edit', $student->id) }}"
+                                                class="btn btn-primary">Edit</a>
+                                            <a href="{{ route('students.show', $student->id) }}"
+                                                class="btn btn-primary">Show</a>
 
                                             <!-- Delete Button -->
                                             <form action="{{ route('students.destroy', $student->id) }}" method="POST">

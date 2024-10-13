@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\StudentController;
+use App\Http\Controllers\FrontendController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -16,9 +17,11 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/', [FrontendController::class, 'index']);
 
 
 
@@ -63,10 +66,13 @@ Route::post('/subcategory/update/{id}', [App\Http\Controllers\Admin\SubcategoryC
 
 Route::get('/post/index', [App\Http\Controllers\Admin\PostController::class, 'index'])->name('post.index');
 Route::get('/post/create', [App\Http\Controllers\Admin\PostController::class, 'create'])->name('post.create');
-Route::delete('/post/{id}', [App\Http\Controllers\Admin\PostController::class, 'delete'])->name('post.delete');
+Route::get('/post/delete/{id}', [App\Http\Controllers\Admin\PostController::class, 'delete'])->name('post.delete');
 // Route::get('/post/delete/{id}', [App\Http\Controllers\Admin\PostController::class, 'delete'])->name('post.delete');
 
 Route::post('/post/store', [App\Http\Controllers\Admin\PostController::class, 'store'])->name('post.store');
+Route::get('/post/edit/{id}', [App\Http\Controllers\Admin\PostController::class, 'edit'])->name('post.edit');
+Route::post('/post/update/{id}', [App\Http\Controllers\Admin\PostController::class, 'update'])->name('post.update');
+Route::get('/post/show/{id}', [App\Http\Controllers\Admin\PostController::class, 'show'])->name('post.show');
 
 
 

@@ -65,7 +65,7 @@
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    <a href="{{ route('subcategory.edit', $subcategory->id) }}" class="btn btn-primary">Edit</a>
+                                                    <a href="{{ route('post.edit', $subcategory->id) }}" class="btn btn-primary">Edit</a>
                                                     {{--  <a href="{{ route('posts.delete', $subcategory->id) }}"  class="btn btn-danger delete">Delete</a>  --}}
                                                     <a href="javascript:void(0);" data-url="{{ route('post.delete', $subcategory->id) }}" class="delete btn btn-danger delete">Delete</a>
 
